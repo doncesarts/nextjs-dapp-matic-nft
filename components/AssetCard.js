@@ -7,10 +7,12 @@
  * @author christopher chavez
  */
 const AssetCard = (props) => {
-  const { nft, buyNft } = props;
+  const { nft, buyNft, showBuyButton } = props;
   return (
     <div  className="border shadow rounded-xl overflow-hidden">
-      <img src={nft.image} />
+      {nft.image ? (<img src={nft.image} width="300" height="250"/>): (
+        <img src={'/no-image-icon.png'}  width="300" height="250"/>
+      )}
       <div className="p-4">
         <p style={{ height: "64px" }} className="text-2xl font-semibold">
           {nft.name}
@@ -19,12 +21,16 @@ const AssetCard = (props) => {
           <p className="text-gray-400">{nft.description}</p>
         </div>
       </div>
+      
       <div className="p-4 bg-black">
         <p className="text-2xl mb-4 font-bold text-white">{`${nft.price} ${process.env.NEXT_PUBLIC_CHAIN_NATIVE_CRYPTO}`}</p>
+        {showBuyButton && (
         <button className="w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>
           Buy
         </button>
+        )}
       </div>
+
     </div>
   );
 };
