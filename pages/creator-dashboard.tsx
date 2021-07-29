@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* pages/creator-dashboard.js */
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import React from 'react';
+
 
 // @ts-expect-error ts-migrate(6142) FIXME: Module '../components/AssetCard' was resolved to '... Remove this comment to see the full error message
 import AssetCard from "../components/AssetCard";
