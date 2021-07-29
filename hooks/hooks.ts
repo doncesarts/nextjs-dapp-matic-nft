@@ -1,11 +1,14 @@
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
+// @ts-expect-error ts-migrate(2732) FIXME: Cannot find module '../artifacts/contracts/NFT.sol... Remove this comment to see the full error message
 import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
+// @ts-expect-error ts-migrate(2732) FIXME: Cannot find module '../artifacts/contracts/NFTMark... Remove this comment to see the full error message
 import Market from "../artifacts/contracts/NFTMarket.sol/NFTMarket.json";
 
-const getMarketItemDetailsFn = (tokenContract) => async (item) => {
+const getMarketItemDetailsFn = (tokenContract: any) => async (item: any) => {
   const tokenUri = await tokenContract.tokenURI(item.tokenId);
   let meta = {};
   try {
@@ -38,11 +41,13 @@ export const useFetchAllNFTs = (deps = []) => {
     /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.JsonRpcProvider();
     const tokenContract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_ADDRESS,
       NFT.abi,
       provider
     );
     const marketContract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_MARKET_ADDRESS,
       Market.abi,
       provider
@@ -85,11 +90,13 @@ export const useFetchCreatedNFTs = (deps = []) => {
     const signer = provider.getSigner();
 
     const marketContract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_MARKET_ADDRESS,
       Market.abi,
       signer
     );
     const tokenContract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_ADDRESS,
       NFT.abi,
       provider
@@ -104,7 +111,7 @@ export const useFetchCreatedNFTs = (deps = []) => {
      *  them as well as fetch their token metadata
      */
     const nfts = await Promise.all(marketItems.map(marketItemDetails));
-    const soldNfts = nfts.filter((i) => i.sold);
+    const soldNfts = nfts.filter((i) => (i as any).sold);
 
     setResponse({
       data: { nfts, soldNfts },
@@ -134,11 +141,13 @@ export const useFetchMyNFTs = (deps = []) => {
     const signer = provider.getSigner();
 
     const marketContract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_MARKET_ADDRESS,
       Market.abi,
       signer
     );
     const tokenContract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_ADDRESS,
       NFT.abi,
       provider
@@ -174,7 +183,7 @@ export const useCreateMarketSale = () => {
     isFetching: false,
     error: null,
   });
-  async function createMarketSale(nft) {
+  async function createMarketSale(nft: any) {
     await window.ethereum.enable();
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
     const web3Modal = new Web3Modal();
@@ -182,6 +191,7 @@ export const useCreateMarketSale = () => {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_MARKET_ADDRESS,
       Market.abi,
       signer
@@ -211,13 +221,17 @@ export const useCreateMarketItem = () => {
     isFetching: false,
     error: null,
   });
-  async function createMarketItem({ url, price }) {
+  async function createMarketItem({
+    url,
+    price
+  }: any) {
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     let contract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_ADDRESS,
       NFT.abi,
       signer
@@ -233,6 +247,7 @@ export const useCreateMarketItem = () => {
 
     /* then list the item for sale on the marketplace */
     contract = new ethers.Contract(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
       process.env.NEXT_PUBLIC_NFT_MARKET_ADDRESS,
       Market.abi,
       signer
