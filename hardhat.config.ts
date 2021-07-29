@@ -1,12 +1,20 @@
 /* hardhat.config.js */
 // https://docs.matic.network/docs/develop/network-details/network
-require("@nomiclabs/hardhat-waffle")
-const fs = require('fs')
-const privateKey = fs.readFileSync(".secret").toString().trim();
+import "@nomiclabs/hardhat-waffle";
+// import "@nomiclabs/hardhat-ethers";
+
+import fs from "fs";
+import { HardhatUserConfig } from "hardhat/types/config";
+import { task } from "hardhat/config";
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+// usePlugin("hardhat-deploy-ethers");
+
+
+const privateKey: string = fs.readFileSync(".secret").toString().trim();
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
-// @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'task'.
 task("accounts", "Prints the list of accounts", async (taskArgs: any, hre: any) => {
   const accounts = await hre.ethers.getSigners();
 
@@ -21,8 +29,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs: any, hre: any) 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
-
-module.exports = {
+ const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
@@ -46,4 +53,5 @@ module.exports = {
       }
     }
   }
-}
+};
+ export default config;

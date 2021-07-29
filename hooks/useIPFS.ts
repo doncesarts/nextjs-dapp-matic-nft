@@ -1,6 +1,5 @@
 import { create } from "ipfs-http-client";
-// @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
-const client = create(`${process.env.NEXT_PUBLIC_IPFS_API}`);
+const client = create({url:process.env.NEXT_PUBLIC_IPFS_API});
 
 const uploadFileMetadata = ({
   name,
