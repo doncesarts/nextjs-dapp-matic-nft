@@ -2,6 +2,7 @@
 import AssetCard from "../components/AssetCard";
 import EmptyPageMessage from "../components/EmptyPageMessage";
 import { useFetchAllNFTs, useCreateMarketSale } from "../hooks/hooks";
+import React from 'react';
 
 export default function Home() {
   const { data, isFetching, reFetchData } = useFetchAllNFTs();

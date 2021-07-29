@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 /* pages/creator-dashboard.js */
+import React from 'react';
+
 import AssetCard from "../components/AssetCard";
 import EmptyPageMessage from "../components/EmptyPageMessage";
 import { useFetchCreatedNFTs } from "../hooks/hooks";

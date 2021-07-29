@@ -3,6 +3,7 @@
 import EmptyPageMessage from "../components/EmptyPageMessage";
 import AssetCard from "../components/AssetCard";
 import { useFetchMyNFTs } from "../hooks/hooks";
+import React from 'react';
 
 export default function MyAssets() {
   const { data, isFetching } = useFetchMyNFTs([]);

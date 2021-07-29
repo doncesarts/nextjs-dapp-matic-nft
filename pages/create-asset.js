@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 /* pages/create-asset.js */
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useCreateMarketItem } from "../hooks/hooks";
 import { uploadFileWithMetadata } from "../hooks/useIPFS";

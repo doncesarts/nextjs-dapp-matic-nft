@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
+import React from 'react';
 
 /**
  * Display the asset information as a card and allows to interact with it.
